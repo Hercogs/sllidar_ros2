@@ -19,8 +19,15 @@ def generate_launch_description():
     angle_compensate = LaunchConfiguration('angle_compensate', default='true')
     scan_mode = LaunchConfiguration('scan_mode', default='Sensitivity')
     scan_frequency = LaunchConfiguration('scan_frequency', default='10')
+    vikings_bot_name_arg = LaunchConfiguration('vikings_bot_name')
+
 
     return LaunchDescription([
+        
+        DeclareLaunchArgument(
+                "vikings_bot_name",
+                default_value="",
+                description="Namespace of robot - [vikings_bot_1 or vikings_bot_2]"),
 
         DeclareLaunchArgument(
             'channel_type',
@@ -59,6 +66,7 @@ def generate_launch_description():
 
         Node(
             package='sllidar_ros2',
+            namespace = vikings_bot_name_arg,
             executable='sllidar_node',
             name='sllidar_node',
             parameters=[{'channel_type': channel_type, 
