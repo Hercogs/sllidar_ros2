@@ -13,8 +13,8 @@ from launch_ros.actions import Node
 def generate_launch_description():
     channel_type = LaunchConfiguration('channel_type', default='udp')
     udp_ip = LaunchConfiguration('udp_ip', default='192.168.11.2')
-    udp_port = LaunchConfiguration('udp_port', default='8089') 
-    frame_id = LaunchConfiguration('frame_id', default='laser')
+    udp_port = LaunchConfiguration('udp_port', default='8089')
+    frame_id = LaunchConfiguration('frame_id', default='/lidar_link')
     inverted = LaunchConfiguration('inverted', default='false')
     angle_compensate = LaunchConfiguration('angle_compensate', default='true')
     scan_mode = LaunchConfiguration('scan_mode', default='Sensitivity')
@@ -25,9 +25,9 @@ def generate_launch_description():
     return LaunchDescription([
         
         DeclareLaunchArgument(
-                "vikings_bot_name",
-                default_value="",
-                description="Namespace of robot - [vikings_bot_1 or vikings_bot_2]"),
+            "vikings_bot_name",
+            default_value="random_namespace",
+            description="Namespace of robot - [vikings_bot_1 or vikings_bot_2]"),
 
         DeclareLaunchArgument(
             'channel_type',
@@ -46,7 +46,7 @@ def generate_launch_description():
         
         DeclareLaunchArgument(
             'frame_id',
-            default_value=frame_id,
+            default_value=[vikings_bot_name_arg, frame_id],
             description='Specifying frame_id of lidar'),
 
         DeclareLaunchArgument(
