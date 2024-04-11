@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
   auto node = rclcpp::Node::make_shared("sllidar_client");
 
   auto lidar_info_sub = node->create_subscription<sensor_msgs::msg::LaserScan>(
-                        "lidar_scan", rclcpp::SensorDataQoS(), scanCb);
+                        "lidar_scan_raw", rclcpp::SensorDataQoS(), scanCb);
 
   rclcpp::spin(node);
 
