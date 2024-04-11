@@ -77,5 +77,14 @@ def generate_launch_description():
                          'angle_compensate': angle_compensate, 
                          'scan_mode': scan_mode}],
             output='screen'),
+        
+        # Only needed for specific project
+        Node(
+            package='sllidar_ros2',
+            namespace = vikings_bot_name_arg,
+            executable='sllidar_node_filter',
+            name='sllidar_node_filter',
+            parameters=[{}],
+            output='screen'),
     ])
 
