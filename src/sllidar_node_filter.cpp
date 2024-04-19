@@ -46,6 +46,19 @@ class SLlidarFilterNode : public rclcpp::Node{
                     scan->ranges.begin() + resolution_quater
       );
 
+      // And as well for intensities
+      modified_scan.intensities.clear(); // Clear all elements
+      modified_scan.intensities.insert(
+                    modified_scan.intensities.end(),
+                    scan->intensities.end() - resolution_quater,
+                    scan->intensities.end()
+      );
+      modified_scan.intensities.insert(
+                    modified_scan.intensities.end(),
+                    scan->intensities.begin(),
+                    scan->intensities.begin() + resolution_quater
+      );
+
       modified_scan.angle_max -= resolution_quater * scan->angle_increment;
       modified_scan.angle_min -= resolution_quater * scan->angle_increment;
 
