@@ -12,6 +12,8 @@ SLAMTEC LIDAR SDK: <https://github.com/Slamtec/rplidar_sdk>
 
 SLAMTEC LIDAR Tutorial: <https://github.com/robopeak/rplidar_ros/wiki>
 
+**In `vikings_bot` project ```sllidar_s2e_launch.py``` launch file is used. Because of different corrdinate frames between ROS2 and lidar, extra node is used. See `./src/sllidar_node_filter.cpp`**
+
 ## Supported SLAMTEC LIDAR
 
 | Lidar Model |
